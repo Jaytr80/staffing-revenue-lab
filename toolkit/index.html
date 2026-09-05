@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>The AI Staffing Revenue Toolkit | Staffing Revenue Lab</title>
+
+  <meta
+    name="description"
+    content="A practical staffing revenue system with AI workflows, scorecards, scripts, worksheets and a Revenue Command Center. Instant access for $29."
+  >
+
+  <style>
+    :root {
+      --blue: #1687c9;
+      --dark-blue: #143a5a;
+      --green: #39a94b;
+      --dark: #1f2933;
+      --gray: #667085;
+      --light: #f5f8fa;
+      --border: #dce4ea;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background: #ffffff;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    .site-header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -.3px;
+      white-space: nowrap;
+    }
+
+    .brand-blue {
+      color: var(--blue);
+    }
+
+    .brand-green {
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: #344054;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    /* BUTTONS */
+
+    .btn {
+      display: inline-block;
+      padding: 15px 27px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 16px;
+      transition: .2s ease;
+      text-align: center;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: #ffffff;
+    }
+
+    .btn-green:hover {
+      background: #30983f;
+      transform: translateY(-1px);
+    }
+
+    .btn-blue {
+      background: var(--blue);
+      color: #ffffff;
+    }
+
+    .btn-blue:hover {
+      background: #1177b3;
+    }
+
+    /* HERO */
+
+    .hero {
+      background:
+        linear-gradient(
+          120deg,
+          #f7fbfe 0%,
+          #ffffff 55%,
+          #f3faf5 100%
+        );
+      padding: 70px 0 65px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 60px);
+      line-height: 1.06;
+      color: var(--dark-blue);
+      margin: 0 0 20px;
+      letter-spacing: -1.6px;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero-lead {
+      color: var(--gray);
+      font-size: 20px;
+      margin: 0 0 25px;
+      max-width: 680px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 24px;
+      margin: 24px 0 30px;
+    }
+
+    .hero-points div {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .check {
+      color: var(--green);
+      font-weight: 900;
+      margin-right: 7px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .price {
+      font-size: 35px;
+      font-weight: 900;
+      color: var(--dark-blue);
+    }
+
+    .instant {
+      color: var(--gray);
+      font-size: 13px;
+    }
+
+    /* PRODUCT MOCKUP */
+
+    .product-card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 18px 50px rgba(21, 59, 90, .14);
+      overflow: hidden;
+      border: 1px solid #e2e9ee;
+    }
+
+    .product-top {
+      background: linear-gradient(135deg, #1687c9, #0f4d77);
+      padding: 38px 35px;
+      text-align: center;
+      color: white;
+    }
+
+    .product-top .lab {
+      color: #8be19a;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+    }
+
+    .product-top h2 {
+      font-size: 30px;
+      line-height: 1.1;
+      margin: 10px 0 12px;
+    }
+
+    .product-top p {
+      color: #e7f4fb;
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .product-bottom {
+      padding: 28px 32px 32px;
+    }
+
+    .included-mini {
+      display: grid;
+      gap: 11px;
+      margin-bottom: 25px;
+    }
+
+    .included-mini div {
+      border-bottom: 1px solid #edf1f4;
+      padding-bottom: 9px;
+    }
+
+    .product-bottom .btn {
+      width: 100%;
+    }
+
+    /* GENERAL SECTIONS */
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-light {
+      background: var(--light);
+    }
+
+    .section-title {
+      max-width: 780px;
+      margin: 0 auto 45px;
+      text-align: center;
+    }
+
+    .section-title h2 {
+      margin: 0 0 14px;
+      color: var(--dark-blue);
+      font-size: 38px;
+      line-height: 1.15;
+    }
+
+    .section-title p {
+      color: var(--gray);
+      font-size: 18px;
+      margin: 0;
+    }
+
+    /* 7 STAGES */
+
+    .stages {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stage {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 22px;
+    }
+
+    .stage-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #eaf5fb;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .stage h3 {
+      color: var(--dark-blue);
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .stage p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    /* INCLUDED */
+
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .included-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+    }
+
+    .included-card h3 {
+      color: var(--dark-blue);
+      margin-top: 0;
+      margin-bottom: 9px;
+      font-size: 19px;
+    }
+
+    .included-card p {
+      color: var(--gray);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    /* COMMAND CENTER */
+
+    .command-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .command-box {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 30px rgba(0,0,0,.06);
+      padding: 30px;
+    }
+
+    .command-box h3 {
+      color: var(--dark-blue);
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .command-box ul {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 0;
+    }
+
+    .command-box li {
+      padding: 9px 0;
+      border-bottom: 1px solid #edf1f4;
+    }
+
+    /* WHO IT IS FOR */
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .who-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+    }
+
+    .who-card h3 {
+      margin-top: 0;
+      color: var(--dark-blue);
+    }
+
+    /* CTA */
+
+    .cta {
+      background: linear-gradient(135deg, #123b5a, #0f648f);
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    .cta h2 {
+      margin: 0 auto 15px;
+      font-size: 40px;
+      max-width: 800px;
+    }
+
+    .cta p {
+      max-width: 720px;
+      margin: 0 auto 25px;
+      color: #e5f1f7;
+      font-size: 18px;
+    }
+
+    .cta-price {
+      font-size: 42px;
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    /* FAQ */
+
+    .faq {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .faq-item {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item h3 {
+      color: var(--dark-blue);
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .faq-item p {
+      color: var(--gray);
+      margin: 0;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #101f2c;
+      color: #cbd5dc;
+      padding: 38px 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    footer .footer-links {
+      margin-top: 10px;
+    }
+
+    footer .footer-links a {
+      margin: 0 10px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .command-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stages {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .included-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        padding-top: 45px;
+      }
+
+      .hero-points,
+      .stages,
+      .included-grid,
+      .who-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 52px 0;
+      }
+
+      .section-title h2 {
+        font-size: 31px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .price-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+
+    <a href="/" class="brand">
+      <span class="brand-blue">STAFFING</span>
+      <span class="brand-green"> REVENUE</span>
+      <span class="brand-blue"> LAB</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/#books">Books</a>
+      <a href="/#about">About</a>
+      <a
+        class="btn btn-green"
+        href="https://checkout.mailerlite.com/checkout/34834"
+      >
+        Get Toolkit — $29
+      </a>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+
+      <div class="eyebrow">
+        Staffing Revenue Lab Premium Toolkit
+      </div>
+
+      <h1>
+        Stop Collecting AI Prompts.
+        <span>Start Running a Revenue System.</span>
+      </h1>
+
+      <p class="hero-lead">
+        The AI Staffing Revenue Toolkit gives recruiters and staffing
+        professionals a practical system for finding better opportunities,
+        prioritizing the right accounts, improving client conversations,
+        protecting job-order economics and growing staffing revenue.
+      </p>
+
+      <div class="hero-points">
+        <div><span class="check">✓</span>AI Workflows</div>
+        <div><span class="check">✓</span>Revenue Scorecards</div>
+        <div><span class="check">✓</span>Scripts &amp; Templates</div>
+        <div><span class="check">✓</span>Revenue Command Center</div>
+        <div><span class="check">✓</span>30-Day Revenue Sprint</div>
+        <div><span class="check">✓</span>Instant Digital Access</div>
+      </div>
+
+      <div class="price-row">
+        <a
+          class="btn btn-green"
+          href="https://checkout.mailerlite.com/checkout/34834"
+        >
+          GET INSTANT ACCESS — $29
+        </a>
+
+        <div>
+          <div class="price">$29</div>
+          <div class="instant">One-time purchase</div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="product-card">
+
+      <div class="product-top">
+
+        <div class="lab">
+          STAFFING REVENUE LAB
+        </div>
+
+        <h2>
+          THE AI STAFFING<br>
+          REVENUE TOOLKIT
+        </h2>
+
+        <p>
+          A Practical Client Acquisition, Recruiting
+          &amp; Revenue System
+        </p>
+
+      </div>
+
+      <div class="product-bottom">
+
+        <div class="included-mini">
+          <div>✓ 7-Stage Staffing Revenue System</div>
+          <div>✓ Prospect &amp; Account Scorecards</div>
+          <div>✓ Outreach &amp; Discovery Workflows</div>
+          <div>✓ Job Order Qualification System</div>
+          <div>✓ Candidate &amp; Offer-Risk Tools</div>
+          <div>✓ Revenue Command Center Workbook</div>
+          <div>✓ 30-Day Staffing Revenue Sprint</div>
+        </div>
+
+        <a
+          class="btn btn-green"
+          href="https://checkout.mailerlite.com/checkout/34834"
+        >
+          GET THE TOOLKIT — $29
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 7 STAGES -->
+
+<section class="section-light">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="eyebrow">
+        The Staffing Revenue System
+      </div>
+
+      <h2>
+        Seven Stages. One Revenue Process.
+      </h2>
+
+      <p>
+        Instead of disconnected prompts and random sales activity,
+        the toolkit organizes staffing business development and
+        recruiting around a repeatable operating system.
+      </p>
+
+    </div>
+
+
+    <div class="stages">
+
+      <div class="stage">
+        <div class="stage-number">1</div>
+        <h3>FIND</h3>
+        <p>
+          Identify profitable markets, hiring signals and
+          opportunities worth pursuing.
+        </p>
+      </div>
+
+      <div class="stage">
+        <div class="stage-number">2</div>
+        <h3>PRIORITIZE</h3>
+        <p>
+          Score accounts so recruiter time goes toward
+          the opportunities with the strongest potential.
+        </p>
+      </div>
+
+      <div class="stage">
+        <div class="stage-number">3</div>
+        <h3>ENGAGE</h3>
+        <p>
+          Turn verified hiring signals into more relevant
+          email, phone and LinkedIn outreach.
+        </p>
+      </div>
+
+      <div class="stage">
+        <div class="stage-number">4</div>
+        <h3>DIAGNOSE</h3>
+        <p>
+          Run stronger discovery conversations instead
+          of immediately pitching recruiting services.
+        </p>
+      </div>
+
+      <div class="stage">
+        <div class="stage-number">5</div>
+        <h3>CONTROL</h3>
+        <p>
+          Qualify requisitions and protect recruiter
+          capacity, process control and economics.
+        </p>
+      </div>
+
+      <div class="stage">
+        <div class="stage-number">6</div>
+        <h3>DELIVER</h3>
+        <p>
+          Improve intake, candidate presentation,
+          interview preparation and offer-risk management.
+        </p>
+      </div>
+
+      <div class="stage">
+        <div class="stage-number">7</div>
+        <h3>EXPAND</h3>
+        <p>
+          Turn successful delivery into stronger client
+          relationships and additional opportunities.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- INCLUDED -->
+
+<section>
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="eyebrow">
+        What's Included
+      </div>
+
+      <h2>
+        Built to Be Used — Not Just Read
+      </h2>
+
+      <p>
+        The toolkit combines the strategic playbook with practical
+        tools you can apply directly to a staffing desk.
+      </p>
+
+    </div>
+
+
+    <div class="included-grid">
+
+      <div class="included-card">
+        <h3>AI Staffing Revenue Playbook</h3>
+        <p>
+          The complete seven-stage system with operating rules,
+          frameworks, examples and copy-and-paste AI workflows.
+        </p>
+      </div>
+
+      <div class="included-card">
+        <h3>Market &amp; Account Scorecards</h3>
+        <p>
+          Evaluate markets, hiring signals and prospective clients
+          before committing valuable business-development time.
+        </p>
+      </div>
+
+      <div class="included-card">
+        <h3>Outreach Templates</h3>
+        <p>
+          Signal-based email, LinkedIn, follow-up,
+          reactivation and value-touch structures.
+        </p>
+      </div>
+
+      <div class="included-card">
+        <h3>Discovery Toolkit</h3>
+        <p>
+          Context, Challenge, Consequence, Constraints and
+          Commitment questions for stronger client conversations.
+        </p>
+      </div>
+
+      <div class="included-card">
+        <h3>Job Order Scorecard</h3>
+        <p>
+          Evaluate urgency, compensation, client commitment,
+          process quality, competition and fee potential.
+        </p>
+      </div>
+
+      <div class="included-card">
+        <h3>Candidate Delivery Tools</h3>
+        <p>
+          Structured candidate briefs, interview preparation
+          and offer-risk checks.
+        </p>
+      </div>
+
+      <div class="included-card">
+        <h3>Client Expansion System</h3>
+        <p>
+          Identify adjacent departments, job families,
+          managers and future client opportunities.
+        </p>
+      </div>
+
+      <div class="included-card">
+        <h3>Weekly Revenue Scoreboard</h3>
+        <p>
+          Monitor response, conversation, job-order,
+          interview, offer, fill and expansion conversion.
+        </p>
+      </div>
+
+      <div class="included-card">
+        <h3>30-Day Revenue Sprint</h3>
+        <p>
+          A day-by-day implementation plan for putting
+          the system into operation.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- COMMAND CENTER -->
+
+<section class="section-light">
+
+  <div class="container command-grid">
+
+    <div>
+
+      <div class="eyebrow">
+        Included Companion Workbook
+      </div>
+
+      <h2 style="font-size:38px;color:#143a5a;margin-top:0;">
+        Staffing Revenue Command Center
+      </h2>
+
+      <p style="font-size:18px;color:#667085;">
+        The companion workbook turns the playbook into an editable
+        operating dashboard so you can track opportunities, requisitions,
+        candidates, clients and revenue activity in one place.
+      </p>
+
+      <p style="color:#667085;">
+        Use it alongside the playbook to move from ideas
+        to measurable execution.
+      </p>
+
+    </div>
+
+
+    <div class="command-box">
+
+      <h3>Command Center Includes</h3>
+
+      <ul>
+        <li>✓ Dashboard</li>
+        <li>✓ Account Scoring</li>
+        <li>✓ Hiring Signals</li>
+        <li>✓ Business Development Pipeline</li>
+        <li>✓ Req Scorecard</li>
+        <li>✓ Candidate Pipeline</li>
+        <li>✓ Client Health</li>
+        <li>✓ Weekly Metrics</li>
+        <li>✓ 30-Day Sprint Tracker</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- WHO IT IS FOR -->
+
+<section>
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="eyebrow">
+        Who It's For
+      </div>
+
+      <h2>
+        Built for Staffing Professionals Who Want a Better System
+      </h2>
+
+    </div>
+
+
+    <div class="who-grid">
+
+      <div class="who-card">
+
+        <h3>Recruiters &amp; Full-Desk Professionals</h3>
+
+        <p>
+          Improve prospecting, discovery, job-order qualification,
+          candidate delivery and account expansion without adding
+          unnecessary complexity.
+        </p>
+
+      </div>
+
+
+      <div class="who-card">
+
+        <h3>Staffing Owners &amp; Sales Leaders</h3>
+
+        <p>
+          Create more consistent business-development and recruiting
+          processes around the activities most directly connected
+          to revenue outcomes.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+  <h2>
+    Turn AI Into a Practical Staffing Revenue System
+  </h2>
+
+  <p>
+    Get the complete playbook, Revenue Command Center,
+    scorecards, scripts, workflows and 30-Day Revenue Sprint.
+  </p>
+
+  <div class="cta-price">
+    $29
+  </div>
+
+  <a
+    class="btn btn-green"
+    href="https://checkout.mailerlite.com/checkout/34834"
+  >
+    GET INSTANT ACCESS — $29
+  </a>
+
+  <p style="font-size:13px;margin-top:17px;">
+    One-time purchase • Digital download • Secure checkout
+  </p>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section>
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="eyebrow">
+        Questions
+      </div>
+
+      <h2>
+        Frequently Asked Questions
+      </h2>
+
+    </div>
+
+
+    <div class="faq">
+
+      <div class="faq-item">
+        <h3>Is this another collection of AI prompts?</h3>
+        <p>
+          No. The toolkit includes AI workflows, but they sit inside
+          a larger staffing revenue system covering market selection,
+          prospecting, discovery, job orders, recruiting delivery,
+          client expansion and revenue measurement.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What files do I receive?</h3>
+        <p>
+          Your download includes the AI Staffing Revenue Toolkit
+          playbook and the Staffing Revenue Command Center workbook,
+          along with the accompanying toolkit files.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is this a subscription?</h3>
+        <p>
+          No. The $29 Toolkit is a one-time purchase.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How do I receive the Toolkit?</h3>
+        <p>
+          After successful payment, the order confirmation page
+          provides immediate access to your digital download.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I use the templates in my staffing business?</h3>
+        <p>
+          Yes. Purchasers may use and customize the tools internally
+          in their own recruiting or staffing business. Redistribution,
+          resale or repackaging of the toolkit itself is not permitted.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Are results guaranteed?</h3>
+        <p>
+          No. Results depend on your market, specialization,
+          execution, client mix and other business factors.
+          The toolkit is designed to provide practical systems
+          and tools, not guaranteed revenue outcomes.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FINAL CTA -->
+
+<section class="cta">
+
+  <h2>
+    Ready to Build a More Systematic Staffing Desk?
+  </h2>
+
+  <p>
+    Start with the AI Staffing Revenue Toolkit today.
+  </p>
+
+  <a
+    class="btn btn-green"
+    href="https://checkout.mailerlite.com/checkout/34834"
+  >
+    DOWNLOAD THE TOOLKIT — $29
+  </a>
+
+</section>
+
+
+<footer>
+
+  <strong>Staffing Revenue Lab</strong><br>
+  Recruiting &amp; Business Development for the Age of AI
+
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="mailto:info@staffingrevenuelab.com">Contact</a>
+  </div>
+
+  <div style="margin-top:14px;">
+    © 2026 Staffing Revenue Lab. All rights reserved.
+  </div>
+
+</footer>
+
+</body>
+</html>
