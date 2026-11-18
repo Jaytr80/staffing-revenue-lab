@@ -1,4 +1,5 @@
 const books=[
+{key:'clientacq',title:'The AI Staffing Client Acquisition Playbook',cats:['sales','ai','revenue'],cover:'assets/ai-staffing-client-acquisition-playbook-cover.jpg',desc:'A practical system for finding companies with hiring needs, identifying decision-makers, earning conversations and winning better job orders, using AI as a research and preparation assistant.',url:'https://www.amazon.com/dp/B0HS26ZR8X?tag=booklabpicks-20'},
 {key:'first10',title:'The First 10 Clients',cats:['sales','revenue'],cover:'assets/first-10-clients-cover.jpg',desc:'A recruiter\'s blueprint for starting a profitable boutique staffing firm: pick a niche, validate demand, protect cash and earn your first ten clients.',url:'https://www.amazon.com/dp/B0HP8KDT8X?tag=booklabpicks-20'},
 {key:'revenue',title:'From Req to Revenue',cats:['recruiting','revenue'],cover:'https://static.wixstatic.com/media/ccfe83_3be052b4efe44b18859835838ebe435a~mv2.png/v1/fill/w_980,h_1470,al_c,q_90,enc_auto/Req%20to%20Revenue%20cover.png',desc:'Turn every open requisition into predictable, repeatable income and build stronger client ownership.',url:'https://www.amazon.com/dp/B0GLQF5CJ4?tag=booklabpicks-20'},
 {key:'ai',title:'AI Powered Technical Recruiting',cats:['recruiting','ai'],cover:'https://static.wixstatic.com/media/ccfe83_390619cfcfcf43ae8cfba8f3dcdede33~mv2.jpg/v1/fill/w_980,h_1470,al_c,q_85,enc_auto/AI%20Powered%20Technical%20Recruiting%20-%20Cover.jpg',desc:'Use AI to source smarter, screen faster and combine automation with human judgment.',url:'https://www.amazon.com/dp/B0GHZVGBM6?tag=booklabpicks-20'},
@@ -12,7 +13,8 @@ const grid=document.querySelector('#bookGrid');
 function render(filter='all'){grid.innerHTML=books.filter(b=>filter==='all'||b.cats.includes(filter)).map(b=>`<article class="book-card"><div class="book-cover-wrap"><img class="book-cover" src="${b.cover}" alt="${b.title} book cover"></div><div class="book-info"><div class="book-tags">${b.cats.join(' • ')}</div><h3>${b.title}</h3><p>${b.desc}</p><a class="book-link" target="_blank" rel="noopener" href="${b.url}">View on Amazon ↗</a></div></article>`).join('')}
 render();
 document.querySelectorAll('.filter').forEach(x=>x.onclick=()=>{document.querySelectorAll('.filter').forEach(y=>y.classList.remove('active'));x.classList.add('active');render(x.dataset.filter)});
-const recs={bd:books[7],ai:books[4],margin:books[6],revenue:books[0]};
+const byKey=Object.fromEntries(books.map(b=>[b.key,b]));
+const recs={bd:byKey.clientacq,ai:byKey.salesai,margin:byKey.margin,revenue:byKey.revenue};
 document.querySelectorAll('.goal').forEach(x=>x.onclick=()=>{document.querySelectorAll('.goal').forEach(y=>y.classList.remove('active'));x.classList.add('active');const b=recs[x.dataset.book];recTitle.textContent=b.title;recText.textContent=b.desc;recLink.href=b.url});
 document.querySelector('.menu-toggle').onclick=()=>document.querySelector('.nav').classList.toggle('open');
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('visible')),{threshold:.08});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
