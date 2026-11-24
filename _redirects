@@ -1,0 +1,4 @@
+# Previous article URLs now live under /blog/
+/articles /blog 301
+/articles/ /blog/ 301
+/articles/* /blog/:splat 301
